@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "667ab113192c6401bff178d1"
+  },
+  "userId": {
+    "$oid": "667558709d350e2a1e76f216"
+  },
+  "movieId": {
+    "$oid": "667401cd065c98bf7fd7853d"
+  },
+  "postReview": "what a superb movie",
+  "ratings": 5
+},{
+  "_id": {
+    "$oid": "667d423b32f3b5d29b2956be"
+  },
+  "userId": {
+    "$oid": "667d41c432f3b5d29b2956b9"
+  },
+  "movieId": {
+    "$oid": "6673da77a4766c41c37bf948"
+  },
+  "postReview": "good",
+  "ratings": 3
+},{
+  "_id": {
+    "$oid": "667e823e2f39983521ba357e"
+  },
+  "userId": {
+    "$oid": "667d41c432f3b5d29b2956b9"
+  },
+  "movieId": {
+    "$oid": "6673da77a4766c41c37bf948"
+  },
+  "postReview": "average",
+  "ratings": 2
+},{
+  "_id": {
+    "$oid": "6683d47cadd199dae3df036e"
+  },
+  "userId": {
+    "$oid": "6673c87b691a374b479cd219"
+  },
+  "movieId": {
+    "$oid": "6673da77a4766c41c37bf948"
+  },
+  "postReview": "good",
+  "ratings": 2
+}]

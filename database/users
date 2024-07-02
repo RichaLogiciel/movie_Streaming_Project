@@ -1,0 +1,70 @@
+[{
+  "_id": {
+    "$oid": "667558709d350e2a1e76f216"
+  },
+  "userName": "abcd",
+  "email": "abcd@gmail.com",
+  "password": "$2b$10$Nxuf7XQ8mcbvqFm7Sn1eze143MdLtu/QVbbBeUvb5JF1D0lqXIm3W",
+  "favouriteGenre": "Bajrangi Bhaijaan"
+},{
+  "_id": {
+    "$oid": "66790306b3b44b5464fa91de"
+  },
+  "userName": "pqrs",
+  "email": "pq@gmail.com",
+  "password": "123",
+  "favouriteGenre": "Sam Bahadur"
+},{
+  "_id": {
+    "$oid": "66790bdb59114c301f0ece07"
+  },
+  "userName": "demo",
+  "email": "demo@gmail.com",
+  "password": "123",
+  "favouriteGenre": "Sam Bahadur"
+},{
+  "_id": {
+    "$oid": "66793b519f8d4c7b40b34a88"
+  },
+  "userName": "rb",
+  "email": "rb@gmail.com",
+  "password": "$2b$10$OFmu.Hzjet3NtQ7B9BUAXuHh8ZiWnHaLxV98XfSUOtWlFuNKwCK3C",
+  "favouriteGenre": "Bajrangi Bhaijaan,Sam Bahadur",
+  "unFavouriteGenre": "Dilwale Dulhania Le Jayenge"
+},{
+  "_id": {
+    "$oid": "667a57dfc3a0437626e09596"
+  },
+  "userName": "pink",
+  "email": "pink@gmail.com",
+  "password": "$2b$10$WD4bw73gmtqkRVG7BNTus.nevuY4iqFTRDkoTY4M6JZA2aAjAXLea",
+  "favouriteGenre": "Bajrangi Bhaijaan,Sam Bahadur",
+  "unFavouriteGenre": "Bajrangi Bhaijaan,Sam Bahadur"
+},{
+  "_id": {
+    "$oid": "667d2ed6099fda2a4c04af57"
+  },
+  "userName": "example",
+  "email": "example@gmail.com",
+  "password": "$2b$10$gPG0Aern8wqeVR0FAhaCnuuadYBSz0SPUQmQiZcowAAFZslma2SDO",
+  "favouriteGenre": "Sam Bahadur",
+  "unFavouriteGenre": "3 Idiots"
+},{
+  "_id": {
+    "$oid": "667d40f632f3b5d29b2956b3"
+  },
+  "userName": "richabisht005",
+  "email": "richabisht005@gmail.com",
+  "password": "$2b$10$H3F5T.tfARelo5txf7QKPuqHjSxT/yzROGmfMzWT0IfqonMOEr9oi",
+  "favouriteGenre": "Filhaal",
+  "unFavouriteGenre": "3 Idiots"
+},{
+  "_id": {
+    "$oid": "667d41c432f3b5d29b2956b9"
+  },
+  "userName": "richabisht",
+  "email": "richabisht@gmail.com",
+  "password": "123",
+  "favouriteGenre": "Sam Bahadur",
+  "unFavouriteGenre": "Dilwale Dulhania Le Jayenge"
+}]

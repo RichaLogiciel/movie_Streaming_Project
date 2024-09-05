@@ -21,7 +21,7 @@ const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         const { userName, email, password, favouriteGenre, unFavouriteGenre } = req.body;
         if (!userName || !email || !password || !favouriteGenre) {
-            console.error("Validation Error: Please Provide required fields");
+            console.log("Validation Error: Please Provide required fields");
             return res.status(400).json({ msg: "Please Provide important credentials" });
         }
         const existingUser = yield user_1.userModel.findOne({ email: email });
@@ -39,9 +39,10 @@ const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             unFavouriteGenre
         };
         yield user_1.userModel.create(newUser);
-        return res.status(201).json({ msg: "User Created Successfull", });
+        return res.status(201).json({ msg: "User Created Successfully", });
     }
     catch (error) {
+        console.log("Internal Server Error");
         return res.status(500).json({ msg: "Internal server Error" });
     }
 });
@@ -50,16 +51,19 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
+            console.log('Please provide important credentials');
             return res.status(400).json({ msg: "Please provide imp credentials" });
         }
         const user = yield user_1.userModel.findOne({ email });
         if (!user || !(yield bcrypt_1.default.compare(password, user.password.toString()))) {
+            console.log("Provided creadentials are Invalid");
             return res.status(401).json({ msg: "Invalid credentials" });
         }
         const token = jsonwebtoken_1.default.sign({ userId: user._id }, jwt_1.default, { expiresIn: '1h' });
         return res.json({ msg: "logged In Successfully", token });
     }
     catch (error) {
+        console.log('Internal Server Error');
         return res.status(500).json({ msg: "Internal Server error" });
     }
 });
@@ -69,11 +73,13 @@ const favouriteGenre = (req, res) => __awaiter(void 0, void 0, void 0, function*
         const id = req.params.id;
         const favMovie = yield user_1.userModel.findById(id).select('favouriteGenre');
         if (!favMovie) {
+            console.log('Favourite movie not found');
             return res.status(404).json({ msg: "FavMovie not Found" });
         }
         return res.status(200).json(favMovie);
     }
     catch (error) {
+        console.log('Internal Server Error');
         return res.status(500).json({ msg: "Internal Server Error", error });
     }
 });
@@ -83,6 +89,7 @@ const unfavouriteGenre = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const id = req.params.id;
         const unfavMovie = yield user_1.userModel.findById(id).select('unFavouriteGenre');
         if (!unfavMovie) {
+            console.log('UnfavouriteMovie not found');
             return res.status(404).json({ msg: "Movie not Found" });
         }
         return res.status(200).json(unfavMovie);
@@ -104,11 +111,13 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             unFavouriteGenre
         }, { new: true });
         if (!updatedUser) {
+            console.log('User not found');
             return res.status(404).json({ error: "User not found" });
         }
         return res.status(200).json(updatedUser);
     }
     catch (error) {
+        console.log('Internal Server Error');
         res.status(500).json({ error: "Internal Server Error" });
     }
 });

@@ -1,7 +1,4 @@
 "use strict";
-// import { Request, Response, NextFunction } from "express";
-// import defaultSecret from '../jwt';
-// import jwt from "jsonwebtoken";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -13,6 +10,7 @@ const authMiddleware = (req, res, next) => {
     const token = (_a = req.header("Authorization")) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
     if (!token) {
         res.status(401).json({ error: "Please Provide token first" });
+        console.log("Please Provide token");
         return; // Added return to terminate the function if token is missing
     }
     try {
@@ -21,6 +19,8 @@ const authMiddleware = (req, res, next) => {
         next();
     }
     catch (error) {
+        console.log('11');
+        console.log("Internal Server Error");
         res.status(500).json({ error: "Internal Server Error" });
     }
 };

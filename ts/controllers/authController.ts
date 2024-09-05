@@ -26,7 +26,7 @@ export const registerUser = async(req: Request, res: Response): Promise<Response
         unFavouriteGenre
     }
     await userModel.create(newUser);
-    return res.status(201).json({ msg: "User Created Successfull",});
+    return res.status(201).json({ msg: "User Created Successfullyy",});
     } catch(error) {
         console.log("Internal Server Error");
         return res.status(500).json({ msg: "Internal server Error"});
@@ -34,7 +34,7 @@ export const registerUser = async(req: Request, res: Response): Promise<Response
 }
 
 export const login = async(req: Request, res: Response): Promise<Response> => {
-    try{
+    try {
         const { email,password } = req.body;
         if(!email || !password) {
             console.log('Please provide important credentials');

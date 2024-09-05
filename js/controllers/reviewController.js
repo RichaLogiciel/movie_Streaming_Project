@@ -15,6 +15,7 @@ const UserReviews = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const { userId, movieId, postReview, ratings } = req.body;
         if (!userId || !postReview || !ratings || !movieId) {
+            console.log("All fields are not provided");
             return res.status(401).json({ msg: "Please provide all required fields" });
         }
         const newReview = new reviews_1.reviewModel({
@@ -37,11 +38,13 @@ const getReviews = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const userId = req.params.userId;
         const userReviews = yield reviews_1.reviewModel.find({ userId });
         if (!userReviews || userReviews.length === 0) {
+            console.log("User not found");
             return res.status(404).json({ error: "User Not Found" });
         }
         return res.status(201).json(userReviews);
     }
     catch (error) {
+        console.log("Internal Server Error");
         return res.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -51,11 +54,13 @@ const deleteReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const { userId, reviewId } = req.params;
         const deleteReview = yield reviews_1.reviewModel.findOneAndDelete({ userId, _id: reviewId });
         if (!deleteReview) {
+            console.log('Review not found');
             return res.status(404).json({ error: "Review not found" });
         }
         return res.status(200).json({ msg: "Review Deleted Successfully" });
     }
     catch (error) {
+        console.log("Internal Server Error");
         return res.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -69,11 +74,13 @@ const updateReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             ratings
         });
         if (!updatReviewByUser) {
+            console.log('User not found');
             return res.status(400).json({ msg: "User Not found" });
         }
         return res.status(200).json({ msg: "Review Updated Successfully" });
     }
     catch (error) {
+        console.log("Internal Server Error");
         return res.status(500).json({ msg: "Internal Server Error" });
     }
 });

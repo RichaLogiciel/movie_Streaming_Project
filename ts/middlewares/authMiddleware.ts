@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from "express";
-import defaultSecret from '../jwt'; // Assuming this imports your JWT secret
+import defaultSecret from '../jwt'; 
 import jwt from "jsonwebtoken";
 
 declare global {
     namespace Express {
         interface Request {
-            user?: any; // You can replace `any` with a more specific type if needed
+            user?: any; 
         }
     }
 }
@@ -15,7 +15,7 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction): void =
     if (!token) {
          res.status(401).json({ error: "Please Provide token first" });
          console.log("Please Provide token");
-         return; // Added return to terminate the function if token is missing
+         return; 
     }
 
     try {

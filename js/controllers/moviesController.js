@@ -16,19 +16,17 @@ exports.searchMovie = exports.getMovieById = exports.getAllMovies = exports.crea
 const multer_1 = __importDefault(require("multer"));
 const allMovies_1 = require("../models/allMovies");
 const storage = multer_1.default.memoryStorage();
-const upload = (0, multer_1.default)({ storage });
+// const upload = multer({ storage });
 const createMovie = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { title, description, director, cast, genre, releaseDate, availabilityStatus } = req.body;
     try {
-        if (!title || !description || !director || !cast || !genre || !releaseDate || !availabilityStatus) {
-            console.log("Please provide all");
-            return res.status(400).json({ msg: "Please provide all required fields" });
-        }
         if (!req.file) {
+            console.log('please upload a cover file');
             return res.status(400).json({ msg: "Please upload a cover image" });
         }
         const existingMovie = yield allMovies_1.Movie.findOne({ title });
         if (existingMovie) {
+            console.log('Movie already exists in database');
             return res.status(400).json({ msg: "A movie with this title already exist" });
         }
         const movie = {
@@ -49,6 +47,7 @@ const createMovie = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         return res.status(201).json({ msg: "Movie Created Successfully" });
     }
     catch (error) {
+        console.log('Internal Server Error');
         return res.status(400).json({ msg: `Error creating movie: ${error.message}` });
     }
 });
@@ -70,11 +69,13 @@ const getMovieById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const id = req.params.id;
         const fetchMovieById = yield allMovies_1.Movie.findById(id).select('-coverImage');
         if (!fetchMovieById) {
+            console.log('Movie not found');
             return res.status(404).json({ msg: "Movie not Found" });
         }
         return res.status(200).json(fetchMovieById);
     }
     catch (error) {
+        console.log('Internal Server Error');
         return res.status(500).json({ msg: "Internal Server Error" });
     }
 });
@@ -82,6 +83,7 @@ exports.getMovieById = getMovieById;
 const searchMovie = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { title, director } = req.query;
     if (!title && !director) {
+        console.log('Please provide title or genre');
         return res.status(400).json({ msg: "Please Provide a tile or director" });
     }
     const query = {};
@@ -92,7 +94,8 @@ const searchMovie = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     const movies = yield allMovies_1.Movie.find(query).select('-coverImage');
     ;
     if (movies.length === 0) {
-        return res.status(404).json({ msg: "not Found" });
+        console.log('Movie not found');
+        return res.status(404).json({ msg: "Movie not found" });
     }
     return res.status(200).json(movies);
 });
